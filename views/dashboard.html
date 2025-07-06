@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - QuoteVault</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h2>Welcome to Your QuoteVault</h2>
+
+  <form method="POST" action="/add-quote">
+    <input type="text" name="quote" placeholder="Type your quote here..." required>
+    <button type="submit">Add Quote</button>
+  </form>
+
+  <h3>Your Quotes</h3>
+  <ul id="quoteList">
+    <!-- Quotes will be inserted here -->
+  </ul>
+
+  <a href="/logout">Logout</a>
+
+  <script>
+    // Fetch and display quotes
+    fetch('/quotes')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('quoteList');
+        data.forEach(q => {
+          const li = document.createElement('li');
+          li.textContent = q.content;
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>

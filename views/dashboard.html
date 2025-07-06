@@ -13,21 +13,24 @@
   </form>
 
   <h3>Your Quotes</h3>
-  <ul id="quoteList">
-    <!-- Quotes will be inserted here -->
-  </ul>
+  <ul id="quoteList"></ul>
 
   <a href="/logout">Logout</a>
 
   <script>
-    // Fetch and display quotes
     fetch('/quotes')
       .then(res => res.json())
       .then(data => {
         const list = document.getElementById('quoteList');
         data.forEach(q => {
           const li = document.createElement('li');
-          li.textContent = q.content;
+          li.innerHTML = `
+            ${q.content}
+            <form method="POST" action="/delete-quote" style="display:inline;">
+              <input type="hidden" name="id" value="${q.id}">
+              <button type="submit">🗑️</button>
+            </form>
+          `;
           list.appendChild(li);
         });
       });

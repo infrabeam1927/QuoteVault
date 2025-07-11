@@ -8,7 +8,7 @@ QuoteVault is a simple web application that allows users to securely sign up, lo
 
 - User authentication ( signup, login, logout)
 - Passwords securely hashed with bcrypt
-- Save, view, and delete your own quotes
+- Save, view, and delete.  your own quotes
 - Session-based access control
 - SQLite for persistent data storage
 
